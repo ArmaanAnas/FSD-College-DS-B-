@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shop (Prompt Version)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .shop-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .price-list {
+            text-align: left;
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #product-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+        #total-amount {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d9534f;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="shop-container">
+        <h2>Online Shop</h2>
+        
+        <div class="price-list">
+            <p>Tea: ₹120</p>
+            <p>Coffee: ₹500</p>
+            <p>Rice: ₹600</p>
+            <p>Sugar: ₹700</p>
+        </div>
+
+        <button onclick="startShopping()">Buy Items</button>
+
+        <img id="product-image" src="" alt="Product Image">
+        <p id="total-amount"></p>
+    </div>
+
+    <script>
+        const products = {
+            tea: { price: 120, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNRPU2gVF_Mi9a-wZ7HZKZgSt6iPFS_dPjUv3EVOdk2w&s=10" },
+            coffee: { price: 500, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-TbivsgOouS4HJxiYWZIyIakWXht-MD-gBl0O_3Jp5g&s=10" },
+            rice: { price: 600, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw841qrsA-neikwI-PQeu_wLxCaxqHiomzHLdcSq1ONw&s=10" },
+            sugar: { price: 700, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZtvzp7FtqMagdww5OA54hfg0BlA-VtUvvpO57XKZc4A&s=10" }
+        };
+
+        function startShopping() {
+
+            let userInput = prompt("Enter your product (tea, coffee, rice, sugar):");
+            
+            if (userInput === null || userInput === "") {
+                return; 
+            }
+            
+            let selectedProduct = userInput.toLowerCase();
+            if (!products[selectedProduct]) {
+                alert("Sorry, we don't have that item!");
+                return;
+            }
+
+            let quantityInput = prompt("Enter your quantity (in kg):");
+        
+            let quantity = Number(quantityInput);
+
+            if (quantity <= 0 || isNaN(quantity)) {
+                alert("Please enter a valid number!");
+                return;
+            }
+            let itemData = products[selectedProduct];
+            let total = itemData.price * quantity;
+
+            let imgElement = document.getElementById("product-image");
+            imgElement.src = itemData.img;
+            imgElement.style.display = "inline-block";
+
+            document.getElementById("total-amount").innerText = "Your total amount = ₹" + total;
+        }
+    </script>
+</body>
+</html>
