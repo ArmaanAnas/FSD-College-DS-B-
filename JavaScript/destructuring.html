@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destructuring</title>
+</head>
+<body>
+    <script>
+        const student = {
+            name: "Deepak",
+            class: "B.Tech",
+            fee: 100000
+        };
+        const {name, class: studentClass, fee} = student;
+        document.write(name + "<br>");
+        document.write(studentClass + "<br>");
+        document.write(fee + "<br>");
+    </script>
+</body>
+</html>
