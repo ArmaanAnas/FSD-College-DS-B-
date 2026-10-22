@@ -14,3 +14,4 @@ function myfunction(){
     </div>
   )
 }
+export default myfunction
